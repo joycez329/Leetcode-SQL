@@ -1,6 +1,7 @@
 # self-join the table to match manager id with id
 # compare e.salary with m.salary
 
+
 SELECT e.name as Employee
 FROM Employee e
 JOIN Employee m
