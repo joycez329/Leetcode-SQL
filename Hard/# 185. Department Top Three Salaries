@@ -1,0 +1,16 @@
+# 1) use window function to get dense_rank for each department, put it inside FROM Subquery;
+# 2) set a where clause to choose only rank <= 3"
+
+
+SELECT
+    d.name AS Department,
+    t.name AS Employee,
+    t.salary AS Salary
+FROM (
+    SELECT e.*,
+           DENSE_RANK() OVER(PARTITION BY DepartmentId ORDER BY Salary DESC) AS rnk
+    FROM Employee e
+) t
+JOIN Department d
+    ON t.departmentId = d.id
+WHERE rnk <=3
