@@ -1,0 +1,8 @@
+# self-join the table to match manager_id with employee_id, so that we can know employee's manager.
+# set a condition in where clause to find which employee's salary's higher than their managers.
+
+SELECT e.name as Employee
+FROM Employee e
+JOIN Employee m
+    ON e.managerId = m.id
+WHERE e.salary > m.salary
