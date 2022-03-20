@@ -1,4 +1,4 @@
-" # create function;
+" # create function; window function;
 1) use subquery in FROM, give a ranking to salary by using window function, 
 note that we should use dense_rank cuz might have same salary,
 2) set a where conditon that ranking in subquery equals to N in function,
