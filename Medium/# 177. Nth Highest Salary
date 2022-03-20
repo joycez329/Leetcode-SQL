@@ -1,0 +1,18 @@
+" # create function;
+1) use subquery in FROM, give a ranking to salary by using window function, 
+note that we should use dense_rank cuz might have same salary,
+2) set a where conditon that ranking in subquery equals to N in function,
+3) then select the distinct salary that meets the requirements."
+
+
+"CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+BEGIN
+  RETURN (
+      
+      SELECT DISTINCT salary
+      FROM (SELECT salary,
+             DENSE_RANK() OVER(ORDER BY salary DESC) AS r
+            FROM Employee) t
+      WHERE t.r = N     
+  );
+END"
