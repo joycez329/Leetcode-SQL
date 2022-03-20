@@ -1,5 +1,5 @@
-#self-join the table to match manager id with id
-#compare e.salary with m.salary
+# self-join the table to match manager id with id
+# compare e.salary with m.salary
 
 SELECT e.name as Employee
 FROM Employee e
