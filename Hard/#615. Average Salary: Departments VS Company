@@ -1,0 +1,12 @@
+
+SELECT 
+    DISTINCT date_format(pay_date, '%Y-%m') AS pay_month, 
+    department_id,
+    CASE 
+    WHEN AVG(amount) OVER(PARTITION BY department_id, pay_date) > AVG(amount) OVER(PARTITION BY pay_date) THEN 'higher'
+    WHEN AVG(amount) OVER(PARTITION BY department_id, pay_date) < AVG(amount) OVER(PARTITION BY pay_date) THEN 'lower'
+    ELSE 'same' END AS comparison
+FROM salary s 
+LEFT JOIN employee e 
+ON s.employee_id = e.employee_id
+ORDER BY 1 DESC, 2
