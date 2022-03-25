@@ -1,0 +1,22 @@
+WITH CTE AS(
+SELECT
+    *,
+    RANK() OVER(PARTITION BY username ORDER BY startDate DESC) AS rnk
+FROM UserActivity
+)
+SELECT 
+    username,
+    activity,
+    startDate,
+    endDate
+FROM CTE
+WHERE rnk =2
+UNION 
+SELECT
+    username,
+    activity,
+    startDate,
+    endDate
+FROM CTE
+GROUP BY 1
+HAVING COUNT(*) = 1
